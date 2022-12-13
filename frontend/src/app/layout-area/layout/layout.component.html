@@ -1,0 +1,20 @@
+<div appClosPage appOnloadPage> <!-- Unlike React, it is not necessary to write the word className inside the div to prevent CSS leakage  -->
+
+    <header>
+        <app-header></app-header>
+        <hr>
+    </header>
+
+    <main>
+        <!-- <h3>main</h3> -->
+        <router-outlet></router-outlet>
+
+        <hr>
+    </main>
+
+    <footer>
+        <!-- <app-footer></app-footer> -->
+        <h3>footer</h3>
+    </footer>
+
+</div>

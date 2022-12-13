@@ -1,0 +1,70 @@
+<!-- <p>cart works!</p> -->
+
+<div class="bodyCart">
+
+    <div class="bodyCartHeader">
+
+        <div class="headerTitle">
+            <h1>my cart</h1>
+        </div>
+
+        <div class="bodyDeleteIcon">
+            <mat-icon (click)="deleteAllItems()">delete</mat-icon>
+        </div>
+
+    </div>
+
+
+
+    <div class="mainCart">
+
+        <div class="categoryCard"  *ngFor="let item of cart$ | async">
+
+            <div class="categoryTitle">
+                <!-- <h3>{{item.categoryName}}</h3> -->
+                {{item.categoryName}}
+            </div>
+
+            <div class="itemCard" *ngFor="let i of item.cartItems">
+
+                <div class="mainTitle">
+                    {{i.product.name}}
+                </div>
+
+                <div class="deleteItem">
+                    <mat-icon (click)="deleteItem(i)">delete</mat-icon>
+                </div>
+                <div class="imgItem">
+                    <img src="{{i.product.imageName}}" alt="{{i.product.name}}">
+                </div>
+
+                <div class="priceItem">
+                    <strong>${{i.product.price}}</strong> <!-- price-->
+                </div>
+
+                <div class="quantityItem">
+                    {{i.quantity}}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="bodyFooterCart">
+        <!-- <h1>Checkout</h1> -->
+
+        <div class="footerTitle">
+            <h1>Checkout</h1>
+        </div>
+
+        <!-- ** add a condition that if the total price is low or equal to zero then display another div -->
+        <div class="footerTotalPrice">
+            <h1><strong>$ {{totalPrice$|async}}</strong></h1>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,107 @@
+<div class="divLogin">
+    <!-- <h3>login</h3>
+    <a routerLink="/admin">admin</a>
+    |
+    <a routerLink="/client">client</a> -->
+
+    <ng-template #lior>
+        <h1>00000</h1>
+    </ng-template>
+<!-- ------------------------------------1-------------------------------------------------- -->
+    <!-- <div class="item-1" *ngIf="isLogin$ | async as item ; else lior"> -->
+        <!-- <div class="item-1" > -->
+            <div class="item-1" *ngIf="(isLogin$ | async) as item ; else lior">1
+        <!-- <p *ngFor="let p of isLogin$ |async| keyvalue">
+            {{p.key}}: {{p.value}}</p> -->
+                    <!-- <p *ngFor="let p of isLogin$ |async| keyvalue">
+            {{p.key}}: {{p.value}}</p> -->
+    <p>{{item.role}}</p>
+    <pre>{{isLogin$|async| json}}</pre>
+    </div>
+    
+    <app-singin></app-singin>
+<!-- --------------------------------------------------------------------------------------------------- -->
+    <!-- <div class="item-2">
+        2
+    </div> -->
+
+    <mat-card *ngIf="!isLogin">
+        <!-- <mat-card *ngIf="isLogin$ |async as item "> -->
+        <mat-card-content >
+            <div class="header">
+                <h2>Login</h2>
+            </div>
+            <form (ngSubmit)="onLogin()" name="loginForm" [formGroup]="loginForm">
+            <div class="email-input">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input formControlName="email" matInput required />
+                    <mat-error *ngIf="loginForm.get('email').errors?.['required']">
+                        Required email address
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <!-- <span class="aLink">Forgot Password?</span> -->
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required />
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{ hide ? 'visibility_off' : 'visibility'}}</mat-icon>    
+                </button>
+                <mat-error *ngIf="loginForm.get('password').errors?.['required']">
+                    Required password
+                </mat-error>
+
+                </mat-form-field>
+            </div>
+            <button mat-flat-button color="primary" [disabled]="loginForm.invalid">Login</button>
+
+        </form>
+    <button (click)="singIn()">Sing in</button>
+
+        </mat-card-content>
+    </mat-card>
+
+
+    <!-- if is login-->
+    <mat-card class="example-card" *ngIf="isLogin">
+        <!-- <mat-card class="example-card" *ngIf="isLogin$ | async as item"> -->
+            <mat-card-header *ngIf="isLogin$ | async as item">
+          <div mat-card-avatar class="example-header-image">{{item}}</div>
+
+        </mat-card-header>
+        <mat-card-content>
+            <mat-card-title>title</mat-card-title>
+            <mat-card-subtitle>category</mat-card-subtitle>
+          <p>
+            bred for hunting.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+        <button mat-flat-button color="accent" (click)="onStartShopping()">start shopping</button>
+        </mat-card-actions>
+        <mat-card-footer style="box-sizing: border-box;">
+            &#169; lior
+        </mat-card-footer>
+      </mat-card>
+
+    <!-- <div class="mat-login">
+
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>1</mat-grid-tile>
+        <mat-grid-tile>2</mat-grid-tile>
+      </mat-grid-list>
+    </div> -->
+
+    <!-- <mat-grid-list cols="4" rowHeight="100px">
+        <mat-grid-tile
+            *ngFor="let tile of tiles"
+            [colspan]="tile.cols"
+            [rowspan]="tile.rows"
+            [style.background]="tile.color">
+          {{tile.text}}
+        </mat-grid-tile>
+      </mat-grid-list> -->
+</div>

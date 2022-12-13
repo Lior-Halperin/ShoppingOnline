@@ -1,0 +1,6 @@
+{
+    "compilerOptions": {
+        "target": "ES5", // What js version do we want the compiler to convert ts to
+        "esModuleInterop": true // Allows to use import 
+    }
+}

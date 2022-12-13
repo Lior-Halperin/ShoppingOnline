@@ -1,0 +1,63 @@
+<p>singin works!</p>
+
+
+<mat-stepper [linear]="false" #stepper>
+    <mat-step [stepControl]="firstStepFormGroup">
+        <form [formGroup]="firstStepFormGroup">
+            <ng-template matStepLabel>Step-1</ng-template>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Id number</mat-label>
+                <input matInput placeholder="Id number/ Social security number" formControlName="userIdNumber"
+                    maxlength="20" minlength="2" required #inputId>
+                <mat-hint align="end">{{inputId.value.length}}/20</mat-hint>
+                <mat-error
+                    *ngIf="firstStepFormGroup.controls['userIdNumber'].invalid">{{getErrorMessage('userIdNumber','firstStepFormGroup')}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="landOfZion@gmail.com" formControlName="email" maxlength="50" minlength="5"
+                    required #inputEmail>
+                <mat-hint align="end">{{inputEmail.value.length}}/50</mat-hint>
+                <mat-error
+                    *ngIf="firstStepFormGroup.controls['email'].invalid">{{getErrorMessage('email','firstStepFormGroup')}}</mat-error>
+            </mat-form-field>
+            <div>
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required />
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{ hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="firstStepFormGroup.controls['password'].invalid">{{getErrorMessage('password','firstStepFormGroup')}}</mat-error>
+                </mat-form-field>
+
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+
+    </mat-step>
+    <mat-step [stepControl]="secondStepFormGroup" label="Step-2">
+        <form [formGroup]="secondStepFormGroup">
+            <mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+    </mat-step>
+</mat-stepper>

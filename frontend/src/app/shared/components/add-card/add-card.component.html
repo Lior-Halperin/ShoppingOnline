@@ -1,0 +1,48 @@
+
+<form class="example-form"  (ngSubmit)="save()" name="addForm"
+    [formGroup]="addForm">
+
+    <label>Image: </label>
+
+
+    <img mat-card-image [src]="imageUrl">
+
+    <input type="file" accept="images/*" #imageFile>
+
+
+
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Product name: </mat-label>
+        <input formControlName="name" maxlength="15" minlength="2"  matInput #nameInput>
+        <mat-hint align="end">{{nameInput.value.length}}/10</mat-hint>
+        <mat-error *ngIf="addForm.controls['name'].invalid">{{getErrorMessage('name')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" floatLabel="always" class="example-full-width">
+        <mat-label>Price:</mat-label>
+        <div class="input-price">
+            <span matTextPrefix>$&nbsp;</span>
+            <input matInput type="number" placeholder="0" class="price" formControlName="price" #priceInput>
+            <span matTextSuffix>.00</span>
+        </div>
+        <mat-hint align="end">{{priceInput.value}}/5000</mat-hint>
+        <mat-error *ngIf="addForm.controls['price'].invalid">{{getErrorMessage('price')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="categoryId">
+            <mat-option *ngFor="let category of categoryList$ | async" [value]="category._id">{{category.name}}
+                <!-- <mat-error *ngIf="addForm.controls['category'].invalid">{{getErrorMessage('category')}}</mat-error> -->
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="edit-button">
+<button mat-raised-button color="accent" [disabled]="addForm.invalid">Save</button>
+<!-- <button mat-raised-button color="accent" >Save</button> -->
+
+    </div>
+    
+</form>

@@ -1,0 +1,13 @@
+<div class="sidenavHeader">
+    <h1 style="border: 1px solid red ;" >Admin Toolbox</h1>
+    <mat-icon (click)="openAddForm()">add</mat-icon>   
+</div>
+
+<app-edit-card [hidden]="!selectedComp"></app-edit-card>
+
+<app-add-card [hidden]="selectedComp"></app-add-card>
+
+
+
+
+

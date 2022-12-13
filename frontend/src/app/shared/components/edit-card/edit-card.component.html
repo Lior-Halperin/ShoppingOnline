@@ -1,0 +1,50 @@
+
+<form class="example-form" *ngFor="let item of selectedCard$ | async " (ngSubmit)="save()" name="editForm"
+    [formGroup]="editForm">
+
+    <label>Image: </label>
+
+
+    <img mat-card-image [src]="imageUrl">
+    <!-- <input type="file" accept="images/*" #imageFile (change)="onselectFile($event)"> -->
+
+    <input type="file" accept="images/*" #imageFile>
+
+    <!-- <img mat-card-image src="{{item.product.imageName}}"> -->
+
+
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Product name: </mat-label>
+        <input formControlName="name" maxlength="15" minlength="2"  matInput #nameInput>
+        <mat-hint align="end">{{nameInput.value.length}}/10</mat-hint>
+        <mat-error *ngIf="editForm.controls['name'].invalid">{{getErrorMessage('name')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" floatLabel="always" class="example-full-width">
+        <mat-label>Price:</mat-label>
+        <div class="input-price">
+            <span matTextPrefix>$&nbsp;</span>
+            <input matInput type="number" placeholder="0" class="price" formControlName="price" #priceInput>
+            <span matTextSuffix>.00</span>
+        </div>
+        <mat-hint align="end">{{priceInput.value}}/5000</mat-hint>
+        <mat-error *ngIf="editForm.controls['price'].invalid">{{getErrorMessage('price')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category">
+            <mat-option *ngFor="let category of categoryList$ | async" [value]="category._id">{{category.name}}
+                <mat-error *ngIf="editForm.controls['category'].invalid">{{getErrorMessage('category')}}</mat-error>
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="edit-button">
+        <button mat-raised-button color="accent" [disabled]="editForm.invalid">Save</button>
+        <!-- <button mat-raised-button color="accent" >Save</button> -->
+
+    </div>
+    
+</form>
