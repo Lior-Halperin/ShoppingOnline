@@ -36,9 +36,9 @@
         <mat-label>Category</mat-label>
         <mat-select formControlName="category">
             <mat-option *ngFor="let category of categoryList$ | async" [value]="category._id">{{category.name}}
-                <mat-error *ngIf="editForm.controls['category'].invalid">{{getErrorMessage('category')}}</mat-error>
             </mat-option>
         </mat-select>
+        <mat-error *ngIf="editForm.controls['category'].invalid">{{getErrorMessage('category')}}</mat-error>
     </mat-form-field>
 
     <div class="edit-button">

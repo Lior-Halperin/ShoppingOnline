@@ -58,8 +58,8 @@ export class ProductsService {
                 formData.append(key,value)
             }
             
-            console.log('product to edit: ',productToEdit)
-            console.log(`${this.serverUrl}products/${productToEdit._id}`)
+            // console.log('product to edit: ',productToEdit)
+            // console.log(`${this.serverUrl}products/${productToEdit._id}`)
            const resultEdit = await firstValueFrom(this.httpClient.patch<ProductModel[]>(`${this.serverUrl}products/${productToEdit._id}`,formData));
 
             this.notificationService.showNotification('Successfully updated', 'success')

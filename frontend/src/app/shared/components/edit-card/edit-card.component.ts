@@ -108,10 +108,10 @@ export class EditCardComponent implements OnInit {
                 toSend[`${key}`] = value
             }
             this.editDetails = toSend
-            console.log('img:',this.imageFileRef.nativeElement.files[0])
+            // console.log('img:',this.imageFileRef.nativeElement.files[0])
             this.editDetails.image = this.imageFileRef.nativeElement.files[0];
             delete this.editDetails.imageName
-            console.log('editDetails: ', this.editDetails)
+            // console.log('editDetails: ', this.editDetails)
             this.productsService.editProduct(this.editDetails)
         }
         catch (err: any) {

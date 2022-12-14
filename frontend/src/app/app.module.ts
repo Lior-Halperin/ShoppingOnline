@@ -15,6 +15,7 @@ import {ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './layout-area/header/header.component';
 import { SinginComponent } from './components/auth/singin/singin.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     declarations: [ // Module components
@@ -35,7 +36,8 @@ import {MatStepperModule} from '@angular/material/stepper';
         MatIconModule,
         ReactiveFormsModule,
         MatToolbarModule,
-        MatStepperModule
+        MatStepperModule,
+        MatSelectModule
         
     ],
     exports: [ // Which components we want to export outside of this module, so any other module could use it

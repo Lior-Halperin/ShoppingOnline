@@ -12,7 +12,6 @@ const router = express.Router();
 router.patch("/register-step1", async (request: Request , response: Response, next: NextFunction) => {
 
     try{
-        console.log("---- register step-1 ----")
         const user = new UserModel(request.body);
         const validateStep1 = await logic.registerStep1(user)
 
@@ -24,11 +23,10 @@ router.patch("/register-step1", async (request: Request , response: Response, ne
 });
 
 // register step-2
-// POST http://localhost:3001/api/auth/register-step2
-router.post("/auth/register-step2", async (request: Request , response: Response, next: NextFunction) => {
+// POST http://localhost:3001/api/register-step2
+router.post("/register-step2", async (request: Request , response: Response, next: NextFunction) => {
 
     try{
-        console.log("---- register step-2 ----")
         const user = new UserModel(request.body);
         const token = await logic.registerStep2(user);
         

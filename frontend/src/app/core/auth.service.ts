@@ -31,7 +31,6 @@ export class AuthService {
     };
 
 
-
     private serverUrl = environment.serverUrl;
 
     private helper = new JwtHelperService();
@@ -51,7 +50,7 @@ export class AuthService {
 
         }
         catch (err: any) {
-            this.notificationService.showNotification(err,'error')
+            this.notificationService.showNotification(err, 'error')
         }
 
     }
@@ -64,15 +63,15 @@ export class AuthService {
             // Save token in storage!
             localStorage.setItem("token", token)
 
-            if(this.permissionTypeSubject.value === Role.Admin){
-            this.navigateService.navigateByProvidedArray(`${this.permissionTypeSubject.value.toLowerCase()}`)
+            if (this.permissionTypeSubject.value === Role.Admin) {
+                this.navigateService.navigateByProvidedArray(`${this.permissionTypeSubject.value.toLowerCase()}`)
             }
             this.initialOperation()
             console.log(this.userDetailsSubject.value[0])
-            this.notificationService.showNotification('You have successfully login ','success')
+            this.notificationService.showNotification('You have successfully login ', 'success')
         }
         catch (err: any) {
-            this.notificationService.showNotification(err,'error')
+            this.notificationService.showNotification(err, 'error')
         }
     };
 
@@ -83,21 +82,40 @@ export class AuthService {
     // }
 
     public logout(): void {
-        try{
+        try {
             localStorage.removeItem("token"); // Clear token from storage.
             this.permissionTypeSubject.next(null)
             this.navigateService.navigateByProvidedArray('/')
-            this.notificationService.showNotification('You have successfully logged out ','success')
+            this.notificationService.showNotification('You have successfully logged out ', 'success')
         }
-        catch(err:any){
-            this.notificationService.showNotification(err.error,'error')
+        catch (err: any) {
+            this.notificationService.showNotification(err.error, 'error')
 
         }
 
     };
 
+    public async singIn(registerDetails: UserModel, stepType: string) {
+        try {
+            switch(stepType){
+                case 'firstStepFormGroup':
+                    const firstStepResult =  await firstValueFrom(this.httpClient.patch<UserModel[]>(`${this.serverUrl}register-step1`, registerDetails))
+                    console.log('firstStepResult',firstStepResult)
+                    break;
+                    case 'secondStepFormGroup':
+                        const secondStepResult =  await firstValueFrom(this.httpClient.post<UserModel[]>(`${this.serverUrl}register-step2`, registerDetails))
+                        console.log('secondStepResult',secondStepResult)
+                        break;
+            }
+
+        }
+        catch (err: any) {
+            this.notificationService.showNotification(err.error, 'error')
+        }
+    }
+
     constructor(private httpClient: HttpClient, private navigateService: NavigateService,
-        private notificationService :NotificationService) { }
+        private notificationService: NotificationService) { }
 }
 
 //---------------------------Draft-"Is Authenticate state"------------------------------------
