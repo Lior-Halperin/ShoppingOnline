@@ -1,31 +1,10 @@
 <div class="divLogin">
-    <!-- <h3>login</h3>
-    <a routerLink="/admin">admin</a>
-    |
-    <a routerLink="/client">client</a> -->
 
-    <ng-template #lior>
-        <h1>00000</h1>
-    </ng-template>
-<!-- ------------------------------------1-------------------------------------------------- -->
-    <!-- <div class="item-1" *ngIf="isLogin$ | async as item ; else lior"> -->
-        <!-- <div class="item-1" > -->
-            <div class="item-1" *ngIf="(isLogin$ | async) as item ; else lior">1
-        <!-- <p *ngFor="let p of isLogin$ |async| keyvalue">
-            {{p.key}}: {{p.value}}</p> -->
-                    <!-- <p *ngFor="let p of isLogin$ |async| keyvalue">
-            {{p.key}}: {{p.value}}</p> -->
-    <p>{{item.role}}</p>
-    <pre>{{isLogin$|async| json}}</pre>
-    </div>
-    
-    <app-singin></app-singin>
-<!-- --------------------------------------------------------------------------------------------------- -->
-    <!-- <div class="item-2">
-        2
-    </div> -->
+    <!-- sing in component -->
+    <app-singin *ngIf="!hideSingIn"></app-singin>
 
-    <mat-card *ngIf="!isLogin">
+    <!-- Login panel -->
+    <mat-card *ngIf="!isLogin && hideSingIn">
         <!-- <mat-card *ngIf="isLogin$ |async as item "> -->
         <mat-card-content >
             <div class="header">
@@ -59,16 +38,16 @@
             <button mat-flat-button color="primary" [disabled]="loginForm.invalid">Login</button>
 
         </form>
-    <button (click)="singIn()">Sing in</button>
+    <button mat-stroked-button (click)="singIn()" color="primary">Sing in</button>
 
         </mat-card-content>
     </mat-card>
 
 
-    <!-- if is login-->
+    <!-- Welcome panel (the user is logged in)-->
     <mat-card class="example-card" *ngIf="isLogin">
         <!-- <mat-card class="example-card" *ngIf="isLogin$ | async as item"> -->
-            <mat-card-header *ngIf="isLogin$ | async as item">
+            <mat-card-header *ngIf="userDetails$ | async as item">
           <div mat-card-avatar class="example-header-image">{{item}}</div>
 
         </mat-card-header>

@@ -1,43 +1,58 @@
 .divLogin {
-    border: 3px solid brown;
-        display: grid;
-        grid-template-rows: auto;
-        grid-template-columns: 40% 60%;
-        height: 100%;
-        text-align: center;
-        /* background-color: aqua; */
+    border: 1px solid wheat;
+    text-align: center;
+    height: 100%;
+    background-color: transparent;
+    width: 100%;
+    margin: auto;
+    padding: auto;
+    background-image: url("../../../../assets/img/vegetables-image.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.divLogin >div {
-    border: 1px solid black;
-    
+app-singin {
+    margin: 6em auto;
+
 }
 
-
-mat-card{
+button{
+    margin: 2px;
+}
+mat-card-content .header h2{
+    font-family: Cursive;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 2.2em;
+    color: #4a8b17;
+}
+mat-card {
     max-width: 600px;
-    margin: 2em auto;
+    width: min(600px, 90%);
+    margin: 6em auto;
     text-align: center;
     max-height: 600px;
 }
 
-.header{
+.header {
     text-align: center;
 }
 
-.full-width{
-    width:80%;
-}
-.forgot-password{
-    padding-left:  10px;
+.full-width {
+    width: 80%;
 }
 
-.email_input{
+.forgot-password {
+    padding-left: 10px;
+}
+
+.email_input {
     padding-top: 10px;
 }
 
-.aLink{
-    float:right;
+.aLink {
+    float: right;
     padding-right: 60px;
     text-decoration: none;
 }
@@ -45,11 +60,4 @@ mat-card{
 .example-header-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
-  }
-/* mat-grid-tile {
-    border: 2px solid black;
 }
-
-mat-grid-list {
-    width: 100vw;
-} */

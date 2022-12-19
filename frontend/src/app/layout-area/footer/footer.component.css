@@ -1,0 +1,22 @@
+.main-footer{
+    display: flex;
+    background-color:#4a8b17;
+    height: 10vh;
+    
+}
+ a{
+     margin-left: 1%;
+    margin-top: 1%; 
+ }
+
+img{
+    height: 50%;
+}
+
+p{
+    margin-left: 1%;
+    margin-top: 1.5%;
+   color: white;
+   font-weight: lighter;
+   max-height: 1.5rem;
+}

@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from 'src/app/core/auth.service';
 import { UserModel } from 'src/app/models/user.model';
 import { CredentialsModel } from 'src/app/models/credentials.model';
-import { Observable,filter,map, tap ,take } from 'rxjs';
+import { Observable, filter, map, tap, take } from 'rxjs';
 import { NavigateService } from 'src/app/core/navigate.service';
 import RoleEnum from 'src/app/models/role-enum';
 
@@ -15,77 +15,78 @@ import RoleEnum from 'src/app/models/role-enum';
 //   }
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
     public hide = true;
     public isLogin = false;
-    public isLogin$:  Observable<UserModel>;
-    // public isLogin$: Observable<UserModel[]>;
+    public hideSingIn = true
+    public userDetails$: Observable<UserModel>;
 
-    credentials: CredentialsModel = {email:"",password:""}
+    // public userDetails$: Observable<UserModel[]>;
 
-    loginForm : FormGroup;
+    credentials: CredentialsModel = { email: "", password: "" }
 
-singIn(){
-this.isLogin = !this.isLogin
-console.log(this.isLogin)
-}
-  constructor(private formBuilder: FormBuilder,
-     private authService: AuthService,
-     private navigateService: NavigateService) { }
+    loginForm: FormGroup;
 
-  ngOnInit(): void {
-      //  this.isLogin$ = this.authService.userDetails$
-//  this.isLogin$ = this.authService.userDetails$.pipe(map((o)=>Object(o).role))
- this.isLogin$ = this.authService.userDetails$.pipe(map((o)=>Object(o)))
-//  this.isLogin$ = this.authService.userDetails$.pipe(tap(o=>console.log("lior",o)))
-//  this.isLogin$.pipe(take(1)).subscribe((o)=>{console.log(Object(o).role)})
-this.authService.permissionType$.pipe(take(1)).subscribe((role)=>{
-    // role === Role.Client && this.isLogin = true
-    if(role === RoleEnum.Client){this.isLogin = true}
-    role === RoleEnum.Admin && this.navigateService.navigateByProvidedArray(`${role.toLowerCase()}`)
-})
+    singIn() {
+        this.hideSingIn = !this.hideSingIn
+    }
+    constructor(private formBuilder: FormBuilder,
+        private authService: AuthService,
+        private navigateService: NavigateService) { }
 
-
-    this.loginForm = this.formBuilder.group(
-        {
-            email : [this.credentials.email,[Validators.required, Validators.email,Validators.maxLength(50), Validators.minLength(2)]],
-            password : [this.credentials.password,[Validators.required, Validators.maxLength(16), Validators.minLength(4)]]
-        }
-    )
-
-       // this.loginForm = new FormGroup(
-    //     {
-    //         email : new FormControl('',[Validators.required, Validators.email,Validators.maxLength(50), Validators.minLength(2)]),
-    //         Password : new FormControl('',[Validators.required, Validators.maxLength(16), Validators.minLength(4)])
-    //     }
-    // )
-  }
-
-ngOnChanges(): void {
+    ngOnInit(): void {
+        //  this.userDetails$ = this.authService.userDetails$
+        //  this.userDetails$ = this.authService.userDetails$.pipe(map((o)=>Object(o).role))
+        this.userDetails$ = this.authService.userDetails$.pipe(map((o) => Object(o)))
+        //  this.userDetails$ = this.authService.userDetails$.pipe(tap(o=>console.log("lior",o)))
+        //  this.userDetails$.pipe(take(1)).subscribe((o)=>{console.log(Object(o).role)})
+        this.authService.permissionType$.pipe(take(1)).subscribe((role) => {
+            // role === Role.Client && this.isLogin = true
+            if (role === RoleEnum.Client) { this.isLogin = true }
+            role === RoleEnum.Admin && this.navigateService.navigateByProvidedArray(`${role.toLowerCase()}`)
+        })
 
 
-}
+        this.loginForm = this.formBuilder.group(
+            {
+                email: [this.credentials.email, [Validators.required, Validators.email, Validators.maxLength(50), Validators.minLength(2)]],
+                password: [this.credentials.password, [Validators.required, Validators.maxLength(16), Validators.minLength(4)]]
+            }
+        )
 
-  onLogin(){
-      this.credentials = this.loginForm.value
-      this.authService.login(this.credentials)
-  }
+        // this.loginForm = new FormGroup(
+        //     {
+        //         email : new FormControl('',[Validators.required, Validators.email,Validators.maxLength(50), Validators.minLength(2)]),
+        //         Password : new FormControl('',[Validators.required, Validators.maxLength(16), Validators.minLength(4)])
+        //     }
+        // )
+    }
 
-  onStartShopping(){
-    console.log("Start Shopping")
-  }
-  
-  private afterLoginDetails = [
-        {shoppingStatus: 'open cart', message: "you have a open cart", price: 1, date: '20/2/2022', textButton:"Continue shopping"},
-        {shoppingStatus: 'closed cart', message: "What a pleasure to have you back", price: 1, date: '20/2/2022', textButton:"Start Shopping"},
-        {shoppingStatus: 'new', message: "Welcome to your first purchase", price: "", date: "", textButton:"Start Shopping"},
+    ngOnChanges(): void {
 
-  ];
+
+    }
+
+    onLogin() {
+        this.credentials = this.loginForm.value
+        this.authService.login(this.credentials)
+    }
+
+    onStartShopping() {
+        console.log("Start Shopping")
+    }
+
+    private afterLoginDetails = [
+        { shoppingStatus: 'open cart', message: "you have a open cart", price: 1, date: '20/2/2022', textButton: "Continue shopping" },
+        { shoppingStatus: 'closed cart', message: "What a pleasure to have you back", price: 1, date: '20/2/2022', textButton: "Start Shopping" },
+        { shoppingStatus: 'new', message: "Welcome to your first purchase", price: "", date: "", textButton: "Start Shopping" },
+
+    ];
     // tiles: Tile[] = [
     //     {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
     //     {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},

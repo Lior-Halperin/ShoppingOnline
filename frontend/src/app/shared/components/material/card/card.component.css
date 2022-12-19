@@ -1,18 +1,14 @@
 
-.example-card {
-    max-width: 50%;
-    max-height: 50%;
-  }
-
   .cardArea{
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .example-card {
-    /* padding: 20px; */
     margin: 10px;
     border: 2px solid black;
+    flex-grow: 1;
+    flex-basis: 10%;
     
   }
   .example-card:hover{

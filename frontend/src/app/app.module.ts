@@ -16,6 +16,7 @@ import { HeaderComponent } from './layout-area/header/header.component';
 import { SinginComponent } from './components/auth/singin/singin.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
+import { FooterComponent } from './layout-area/footer/footer.component';
 
 @NgModule({
     declarations: [ // Module components
@@ -23,6 +24,7 @@ import { MatSelectModule } from '@angular/material/select';
         LayoutComponent,
         HeaderComponent,
         SinginComponent,
+        FooterComponent,
     ],
     imports: [ // Which other Modules we need to know so we could use their components and other commands
         BrowserModule,

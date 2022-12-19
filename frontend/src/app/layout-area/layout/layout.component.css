@@ -1,0 +1,23 @@
+
+.layout > *{
+/* border: solid 1px black; */
+}
+.layout {
+display: flex;
+flex-direction: column;
+/* background-color: blueviolet; */
+height: 100vh;
+}
+
+.layout header {
+    height:10vh;
+}
+
+.layout main {
+    height:80vh;   
+}
+
+.layout footer {
+    height:10vh;
+} 
+
