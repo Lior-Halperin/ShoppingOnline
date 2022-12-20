@@ -31,43 +31,19 @@ export class DialogAnimationsComponent implements OnInit {
     ngOnInit(): void {
         this.cardForm = this.formBuilder.group(
             {
-                quantity: [this.cardDetails.quantity, [Validators.required, Validators.max(100), Validators.minLength(1)]],
+                quantity: [this.cardDetails.quantity, [Validators.required, Validators.max(30), Validators.min(1),
+                    Validators.minLength(1),Validators.maxLength(2)]],
             }
         )
     }
 
-    //this.lastLoaded.set(id, products)
     onSave() {
         this.cardDetails = this.cardForm.value
         this.CartProductModel = {product: this.data.card.model, quantity:this.cardForm.value.quantity}
         this.cartService.AddToCart(this.CartProductModel)
-        // this.onCloseClick()
-        // console.log(`test cart 1234` , this.cardDetails)
-        // this.cartModel.id = this.cardForm.value
-        // this.cartModel = {id: this.data.card.model._id,product: this.data.card.model,quantity:this.cardForm.value.quantity}
-        // console.log(this.cartModel)
-
-        //////////
-        // this.cartModel = {product: this.data.card.model,quantity:this.cardForm.value.quantity}
-        // this.cartService.addToCart(this.cartModel)
-        // this.cartModel = {productName:this.data.card.model.name ,product: this.data.card.model, quantity:this.cardForm.value.quantity}
-        // this.cartModel = {categoryName: this.data.card.model.productCategory.name ,cartItem: {productName:this.data.card.model.name ,product: this.data.card.model, quantity:this.cardForm.value.quantity}}
-
-
-        // this.cartService.addToCart(this.CartProductModel)
-
-        ///////
-
-        // this.cartModel.quantity = this.cardForm.value
-        // console.group(`cardDetails`)
-        // console.log(this.cardForm.value)
-        // console.log(this.data.card.model)
-        // console.groupEnd()
-        // this.authService.login(this.credentials)
     }
 
     onCloseClick() {
         this.matDialogRef.close();
-        console.log('fd')
     }
 }

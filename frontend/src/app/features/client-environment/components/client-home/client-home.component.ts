@@ -18,7 +18,8 @@ export class ClientHomeComponent implements OnInit {
 
     public counter$: Observable<number>;
 
-    constructor(private productsService: ProductsService, private componentsConfigService: ComponentsConfigService, private categoryService: CategoryService) { }
+    constructor(private productsService: ProductsService, private componentsConfigService: ComponentsConfigService, 
+        private categoryService: CategoryService) { }
 
     ngOnInit(): void {
         this.counter$ = this.productsService.products$.pipe(map(list => list.length), distinctUntilChanged());

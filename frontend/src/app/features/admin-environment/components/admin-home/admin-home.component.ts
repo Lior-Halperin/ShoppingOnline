@@ -1,10 +1,7 @@
-import { AfterViewInit, Component, ContentChild, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import { distinctUntilChanged, map, Observable, tap } from 'rxjs';
 import { CategoryService } from 'src/app/core/category.service';
 import { ProductsService } from 'src/app/core/services/products.service';
-import { ProductModel } from 'src/app/models/product.model';
-import { CardComponent } from 'src/app/shared/components/material/card/card.component';
-import { DropdownBoxComponent } from 'src/app/shared/components/material/forms/dropdown-box/dropdown-box.component';
 import { SidenavComponent } from 'src/app/shared/components/material/sidenav/sidenav.component';
 import { ComponentsConfigService } from '../../services/components-config.service';
 

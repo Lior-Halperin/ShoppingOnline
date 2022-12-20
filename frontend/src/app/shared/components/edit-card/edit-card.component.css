@@ -1,12 +1,15 @@
 .example-form {
-    /* min-width: 150px;
-    max-width: 500px; */
-    width: 100%;
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.example-form > * {
+    font-family: cursive;
+
 }
 
 .example-full-width {
-    width: 100%;
 }
 
 .input-price {
@@ -26,4 +29,5 @@ input.price::-webkit-inner-spin-button {
 img {
     width: 50%;
     height: 50%;
+    margin: 3em;
 }

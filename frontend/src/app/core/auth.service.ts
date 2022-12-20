@@ -57,7 +57,7 @@ export class AuthService {
 
     public async login(credentials: CredentialsModel) {
         try {
-            console.log("auth Service", "login")
+            // console.log("auth Service", "login")
             // Get token form the backend
             const token = await firstValueFrom(this.httpClient.post<string>(`${this.serverUrl}/auth/login`, credentials))
             // Save token in storage!
@@ -67,7 +67,7 @@ export class AuthService {
                 this.navigateService.navigateByProvidedArray(`${this.permissionTypeSubject.value.toLowerCase()}`)
             }
             this.initialOperation()
-            console.log(this.userDetailsSubject.value[0])
+            // console.log(this.userDetailsSubject.value[0])
             this.notificationService.showNotification('You have successfully login ', 'success')
         }
         catch (err: any) {
@@ -100,11 +100,11 @@ export class AuthService {
             switch(stepType){
                 case 'firstStepFormGroup':
                     const firstStepResult =  await firstValueFrom(this.httpClient.patch<UserModel[]>(`${this.serverUrl}register-step1`, registerDetails))
-                    console.log('firstStepResult',firstStepResult)
+                    // console.log('firstStepResult',firstStepResult)
                     break;
                     case 'secondStepFormGroup':
                         const secondStepResult =  await firstValueFrom(this.httpClient.post<UserModel[]>(`${this.serverUrl}register-step2`, registerDetails))
-                        console.log('secondStepResult',secondStepResult)
+                        // console.log('secondStepResult',secondStepResult)
                         break;
             }
 

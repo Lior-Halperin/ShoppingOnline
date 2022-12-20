@@ -1,14 +1,40 @@
-mat-sidenav {
-    /* background: #0f172a ; */
-    /* width: 15%; */
-    width: max(10rem,15%);
+.body-sidenav{
+    height: 70vh;
+    /* display: flex; */
+    /* flex-direction: column; */
+}
 
-    height: 100%;
+.content * {
+    /* background-color: white ; */
+
+}
+ .cart-icon{
+    display: flex;
+    background-color: #ba5059;
+    width: 1.5em;
+    height: 1.5em;
+    justify-content: center;
+    border-radius: 100%;
 
 }
 
+.content mat-icon{
+   color: white;
+   text-shadow: 1px 1px 2px black;
+
+}
+
+mat-sidenav {
+    width: max(10rem,15%);
+    /* height: 100%; */
+
+}
+mat-sidenav-container{
+        height: 100%;
+
+}
 mat-sidenav-content {
-    /* height: 100vh; */
+    /* height: 80vh; */
     /* background: aqua; */
 
 }

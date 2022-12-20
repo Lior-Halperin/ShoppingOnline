@@ -30,7 +30,7 @@ export class NotificationService {
                 buttonText: buttonText,
                 type: messageType
             },
-            duration: 9000,
+            duration: 4000,
             horizontalPosition: 'center',
             verticalPosition: 'bottom',
             panelClass: messageType,

@@ -1,16 +1,18 @@
 <div class="divLogin">
 
     <!-- sing in component -->
-    <app-singin *ngIf="!hideSingIn"></app-singin>
+    <div class="sing-in" *ngIf="!hideSingIn">
+        <app-singin *ngIf="!hideSingIn"></app-singin>
+        <button mat-raised-button color="warn"  (click)="singIn()" >Back</button>
+    </div>
 
     <!-- Login panel -->
     <mat-card *ngIf="!isLogin && hideSingIn">
-        <!-- <mat-card *ngIf="isLogin$ |async as item "> -->
         <mat-card-content >
             <div class="header">
                 <h2>Login</h2>
             </div>
-            <form (ngSubmit)="onLogin()" name="loginForm" [formGroup]="loginForm">
+            <form  name="loginForm" [formGroup]="loginForm">
             <div class="email-input">
                 <mat-form-field class="full-width" appearance="outline">
                     <mat-label>Email</mat-label>
@@ -21,7 +23,6 @@
                 </mat-form-field>
             </div>
             <div>
-                <!-- <span class="aLink">Forgot Password?</span> -->
                 <mat-form-field class="full-width" appearance="outline">
                     <mat-label>Password</mat-label>
                     <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required />
@@ -35,18 +36,16 @@
 
                 </mat-form-field>
             </div>
-            <button mat-flat-button color="primary" [disabled]="loginForm.invalid">Login</button>
-
+            <button mat-flat-button  (click)="onLogin()" color="primary" [disabled]="loginForm.invalid">Login</button>
+            <button mat-stroked-button (click)="singIn()" color="primary">Sing in</button>
         </form>
-    <button mat-stroked-button (click)="singIn()" color="primary">Sing in</button>
-
         </mat-card-content>
     </mat-card>
 
 
-    <!-- Welcome panel (the user is logged in)-->
-    <mat-card class="example-card" *ngIf="isLogin">
-        <!-- <mat-card class="example-card" *ngIf="isLogin$ | async as item"> -->
+    <!-- Complete this task later -->
+    <!-------------- Welcome panel (the user is logged in)------------------>
+    <!-- <mat-card class="example-card" *ngIf="isLogin">
             <mat-card-header *ngIf="userDetails$ | async as item">
           <div mat-card-avatar class="example-header-image">{{item}}</div>
 
@@ -61,26 +60,9 @@
         <mat-card-actions>
         <button mat-flat-button color="accent" (click)="onStartShopping()">start shopping</button>
         </mat-card-actions>
-        <mat-card-footer style="box-sizing: border-box;">
-            &#169; lior
+        <mat-card-footer >
+           footer
         </mat-card-footer>
-      </mat-card>
-
-    <!-- <div class="mat-login">
-
-    <mat-grid-list cols="2" rowHeight="2:1">
-        <mat-grid-tile>1</mat-grid-tile>
-        <mat-grid-tile>2</mat-grid-tile>
-      </mat-grid-list>
-    </div> -->
-
-    <!-- <mat-grid-list cols="4" rowHeight="100px">
-        <mat-grid-tile
-            *ngFor="let tile of tiles"
-            [colspan]="tile.cols"
-            [rowspan]="tile.rows"
-            [style.background]="tile.color">
-          {{tile.text}}
-        </mat-grid-tile>
-      </mat-grid-list> -->
+      </mat-card> -->
+      <!-- ----------------------------------------------------------- -->
 </div>

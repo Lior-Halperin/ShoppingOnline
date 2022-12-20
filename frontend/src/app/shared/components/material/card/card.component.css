@@ -2,21 +2,32 @@
   .cardArea{
     display: flex;
     flex-wrap: wrap;
+    /* height: max(25%); */
   }
 
   .example-card {
+    display: flex;
+    flex-direction: column;
     margin: 10px;
-    border: 2px solid black;
-    flex-grow: 1;
+    /* border: 2px solid black; */
+    /* flex-grow: 1; */
     flex-basis: 10%;
-    
+    box-shadow: 0 2px 6px 0 #4a8b17;
+    font-family: cursive;
+    text-align: center;
   }
   .example-card:hover{
-    border: 3px solid red;
+    border: 3px solid #df2814;
   }
   
   .example-header-image {
     text-align: center;
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
+  }
+
+  @media all and (max-width:450px){
+    .example-card {
+        flex-grow: 1;
+    }
   }

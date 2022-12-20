@@ -7,13 +7,6 @@ import { Observable, filter, map, tap, take } from 'rxjs';
 import { NavigateService } from 'src/app/core/navigate.service';
 import RoleEnum from 'src/app/models/role-enum';
 
-// export interface Tile {
-//     color: string;
-//     cols: number;
-//     rows: number;
-//     text: string;
-//   }
-
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -40,13 +33,8 @@ export class LoginComponent implements OnInit {
         private navigateService: NavigateService) { }
 
     ngOnInit(): void {
-        //  this.userDetails$ = this.authService.userDetails$
-        //  this.userDetails$ = this.authService.userDetails$.pipe(map((o)=>Object(o).role))
         this.userDetails$ = this.authService.userDetails$.pipe(map((o) => Object(o)))
-        //  this.userDetails$ = this.authService.userDetails$.pipe(tap(o=>console.log("lior",o)))
-        //  this.userDetails$.pipe(take(1)).subscribe((o)=>{console.log(Object(o).role)})
         this.authService.permissionType$.pipe(take(1)).subscribe((role) => {
-            // role === Role.Client && this.isLogin = true
             if (role === RoleEnum.Client) { this.isLogin = true }
             role === RoleEnum.Admin && this.navigateService.navigateByProvidedArray(`${role.toLowerCase()}`)
         })
@@ -59,12 +47,6 @@ export class LoginComponent implements OnInit {
             }
         )
 
-        // this.loginForm = new FormGroup(
-        //     {
-        //         email : new FormControl('',[Validators.required, Validators.email,Validators.maxLength(50), Validators.minLength(2)]),
-        //         Password : new FormControl('',[Validators.required, Validators.maxLength(16), Validators.minLength(4)])
-        //     }
-        // )
     }
 
     ngOnChanges(): void {
@@ -73,6 +55,7 @@ export class LoginComponent implements OnInit {
     }
 
     onLogin() {
+        console.log('test login')
         this.credentials = this.loginForm.value
         this.authService.login(this.credentials)
     }
@@ -87,10 +70,5 @@ export class LoginComponent implements OnInit {
         { shoppingStatus: 'new', message: "Welcome to your first purchase", price: "", date: "", textButton: "Start Shopping" },
 
     ];
-    // tiles: Tile[] = [
-    //     {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    //     {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    //     {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    //     {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-    //   ];
+
 }

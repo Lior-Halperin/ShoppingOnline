@@ -1,5 +1,16 @@
-.sidenavHeader{
+.sidenavHeader {
     display: flex;
-    width: 100%;
-    justify-content: space-between
+    justify-content: space-between;
+    background-color: #4a8b17;
+    height: fit-content;
+}
+
+mat-icon {
+    color: white;
+}
+
+.sidenavHeader h1 {
+    font-size: 1.5rem;
+    color: white;
+    text-shadow: 1px 1px 2px black;
 }

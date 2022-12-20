@@ -1,46 +1,36 @@
-
-
-
-<!-- <div *ngIf="data.card">
-    <h1>{{data.card.model.name}}</h1>
-</div>
-
-<div *ngIf="data.introduction">
-    <h1>{{data.introduction.lazyLoading}}</h1>
-</div> -->
-
-<div  class="cardArea" *ngIf="data.card">
+<div class="cardArea" *ngIf="data.card">
     <mat-card class="example-card" *ngIf="data.card">
         <mat-card-header>
-          <!-- <div mat-card-avatar class="example-header-image"></div> -->
-          <mat-card-title >{{data.card.model.name}}</mat-card-title>
-          <!-- <mat-card-subtitle>{{item.categoryId}}</mat-card-subtitle> -->
+            <!-- <div mat-card-avatar class="example-header-image"></div> -->
+            <mat-card-title>{{data.card.model.name}}</mat-card-title>
+            <!-- <mat-card-subtitle>{{item.categoryId}}</mat-card-subtitle> -->
         </mat-card-header>
-        <img mat-card-image src="{{data.card.model.imageName}}" >
+        <img mat-card-image src="{{data.card.model.imageName}}">
 
         <mat-card-content>
-          <p>Price: {{data.card.model.price}}</p>
+            <p>Price: $ {{data.card.model.price}}</p>
         </mat-card-content>
 
-        <mat-card-footer style="box-sizing: border-box;">
+        <mat-card-footer>
 
-            <form (ngSubmit)="onSave()" name="cardForm" [formGroup]="cardForm">
+            <form  name="cardForm" [formGroup]="cardForm">
                 <div class="quantity-input">
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>=Quantity</mat-label>
-                        <input type="number" formControlName="quantity" matInput required />
-                        <mat-error *ngIf="cardForm.get('quantity').errors?.['required']">
-                            Required email address
-                        </mat-error>
+                        <input type="number" formControlName="quantity"  #quantityInput maxlength="2" minlength="1" matInput required />
+                        <mat-hint align="end">{{quantityInput.value}}/30</mat-hint>
+                        <!-- <mat-error *ngIf="cardForm.get('quantity').errors?.['required']"> -->
+                            <mat-error *ngIf="cardForm.controls['quantity'].invalid">
+                                Possible quantity for purchase is 1-30                        </mat-error>
                     </mat-form-field>
                 </div>
                 <mat-card-actions>
-                    <button mat-flat-button color="primary" [disabled]="cardForm.invalid">Save</button>
-                    <button mat-button (click)="onCloseClick()" style="margin: 10px;">Close</button>
-                  </mat-card-actions>
+                    <button mat-flat-button (click)="onSave()" color="primary" [disabled]="cardForm.invalid">Save</button>
+                    <button mat-flat-button (click)="onCloseClick()" color="warn">Close</button>
+                </mat-card-actions>
             </form>
         </mat-card-footer>
-        
-      </mat-card>
-      
-    </div>
+
+    </mat-card>
+
+</div>
