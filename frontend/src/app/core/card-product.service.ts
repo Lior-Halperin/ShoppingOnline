@@ -15,7 +15,6 @@ export class CardProductService {
 
     // set the global variable of the selected card
     public setSelectedCard(product: CartProductModel[]): void {
-        console.log('CardProductService => setSelectedCard',product)
         this.selectedCardSubject.next(product)
     }
 

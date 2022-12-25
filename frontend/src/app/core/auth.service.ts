@@ -57,7 +57,6 @@ export class AuthService {
 
     public async login(credentials: CredentialsModel) {
         try {
-            // console.log("auth Service", "login")
             // Get token form the backend
             const token = await firstValueFrom(this.httpClient.post<string>(`${this.serverUrl}/auth/login`, credentials))
             // Save token in storage!
@@ -67,7 +66,6 @@ export class AuthService {
                 this.navigateService.navigateByProvidedArray(`${this.permissionTypeSubject.value.toLowerCase()}`)
             }
             this.initialOperation()
-            // console.log(this.userDetailsSubject.value[0])
             this.notificationService.showNotification('You have successfully login ', 'success')
         }
         catch (err: any) {
@@ -76,10 +74,6 @@ export class AuthService {
     };
 
 
-
-    // public isLoggedIn(): boolean {
-    //     return this.permissionTypeSubject
-    // }
 
     public logout(): void {
         try {

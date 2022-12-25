@@ -1,7 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { CartProductModel } from '../models/cart-product.model';
 import { CartModel } from '../models/cart.model';
+import { OrderedItemModel } from '../models/ordered-item.model';
 import { NotificationService } from './notification.service';
 
 @Injectable({
@@ -24,6 +27,7 @@ export class CartService {
         return this.totalPriceSubject.asObservable();
     };
 
+    private serverUrl = environment.serverUrl;
 
     // Adding a product to the shopping cart in the global variable:
     public AddToCart(itemToAdd: CartProductModel): void {
@@ -35,7 +39,6 @@ export class CartService {
             const itemCategoryName = itemToAdd.product.productCategory.name;
             const isCartFull = globalStateCart.length > 0;
             const globalStateTotalPrice = this.totalPriceSubject.value
-            // const itemTotalPrice = this.calculationTotalPrice(itemToAdd.product.price, itemToAdd.quantity)
 
             // If there is no active cart or the category of the item or the item itself does not exist in the cart, the variable will be equal
             // to the data received  from the function "calculationTotalPrice":
@@ -79,6 +82,7 @@ export class CartService {
             this.totalPriceSubject.next(globalStateTotalPrice + itemTotalPrice)
 
             this.notificationService.showNotification('New product added to cart', 'success')
+
         }
 
         catch (err: any) {
@@ -178,7 +182,7 @@ export class CartService {
 
     // Calculates the total price for internal function A and B
     private calculationTotalPrice(price: number, quantity: number): number {
-        
+
         return price * quantity
     }
 
@@ -201,6 +205,50 @@ export class CartService {
 
     };
 
+
+    public async sendOrder() {
+
+        try {
+            const token = localStorage.getItem('token')
+            const orderedItemsCollection: any = [];
+
+            // If there are products in the cart then continue: 
+            if (this.cartSubject.value.length > 0) {
+
+                // A loop that works for each category of products collection:
+                this.cartSubject.value.forEach(elementCart => {
+
+                    // This loop tuns on each product from the collection of products
+                    // in the category, builds an orderedItem object from it and pushes 
+                    // it to the array of orderedItemsCollection
+                    elementCart.cartItems.forEach(elementItems => {
+                        orderedItemsCollection.push(
+                            {
+                                productId: elementItems.product._id,
+                                quantity: elementItems.quantity,
+                                Price: elementItems.product.price,
+                                orderId: undefined
+                            }
+                        )
+
+                    });
+
+                });
+            }
+            const response = await firstValueFrom(this.httpClient.post<any>(`${this.serverUrl}/order`, orderedItemsCollection))
+            this.notificationService.showNotification('Your order has been updated in the system', 'success')
+
+           this.cartSubject.next([]) // Delete the cart
+        }
+        catch (err) {
+            this.notificationService.showNotification('Sending your order failed, please check your order details and try again ', 'error')
+
+        }
+
+
+    }
+
+    constructor(private httpClient: HttpClient, private notificationService: NotificationService) { }
 
     //////////////////////////////--- Old functions to delete----///////////////////////////////
 
@@ -426,5 +474,4 @@ export class CartService {
 
 
 
-    constructor(private notificationService: NotificationService) { }
 }

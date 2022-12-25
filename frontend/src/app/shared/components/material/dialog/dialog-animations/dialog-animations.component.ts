@@ -41,6 +41,7 @@ export class DialogAnimationsComponent implements OnInit {
         this.cardDetails = this.cardForm.value
         this.CartProductModel = {product: this.data.card.model, quantity:this.cardForm.value.quantity}
         this.cartService.AddToCart(this.CartProductModel)
+        this.onCloseClick()
     }
 
     onCloseClick() {

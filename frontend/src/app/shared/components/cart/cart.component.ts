@@ -30,4 +30,8 @@ export class CartComponent implements OnInit {
         // console.log('delete item', item)
         this.cartService.DeleteItemFromCart(item)
     }
+
+    checkout(){
+        this.cartService.sendOrder()
+    }
 }

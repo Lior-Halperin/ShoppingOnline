@@ -1,7 +1,6 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, take } from 'rxjs';
-import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 // See this explainer video: https://www.youtube.com/watch?v=suTtA0Hlwlk
 
@@ -11,12 +10,8 @@ import { AuthService } from './auth.service';
 
 export class AuthInterceptorService implements HttpInterceptor {
 
-    // public token$: Observable<string>;
 
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-        // this.token$ =  this.authService.token$
-        // const localToken = this.token$.pipe(take(1)).subscribe((token) => { console.log(token)})
 
         const token = localStorage.getItem("token");
         if (token) {
@@ -30,6 +25,4 @@ export class AuthInterceptorService implements HttpInterceptor {
             return next.handle(request)
         }
     }
-
-    // constructor(private authService: AuthService) { }
 }

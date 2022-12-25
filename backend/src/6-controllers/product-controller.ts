@@ -4,11 +4,12 @@ import fs from "fs";
 import { ProductModel } from "../4-models/product-model";
 import logic from "../5-logic/product-logic";
 import { RouteNotFoundError } from "../4-models/error-models";
+import verifyLoggedIn from "../3-middleware/verify-logged-in";
 
 const router = express.Router();
 
 // GET http://localhost:3001/api/products
-router.get("/products", async (request: Request, response: Response, next: NextFunction) => {
+router.get("/products",verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
 
         const products = await logic.getAllProducts();
@@ -20,7 +21,7 @@ router.get("/products", async (request: Request, response: Response, next: NextF
 });
 
 // GET http://localhost:3001/api/products/5e91e29b9c08fc560ce2cf3a
-router.get("/products/:_id", async (request: Request, response: Response, next: NextFunction) => {
+router.get("/products/:_id",verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const _id = request.params._id;
         const product = await logic.getOneProduct(_id);
@@ -32,7 +33,7 @@ router.get("/products/:_id", async (request: Request, response: Response, next: 
 });
 
 // GET http://localhost:3001/api/products/category/62e2a895d599b19de53ffbcb
-router.get("/products/category/:_id", async (request: Request, response: Response, next: NextFunction) => {
+router.get("/products/category/:_id",verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         console.log("api/products/category")
         const _id = request.params._id;
@@ -47,7 +48,7 @@ router.get("/products/category/:_id", async (request: Request, response: Respons
 
 
 // POST http://localhost:3001/api/products
-router.post("/products", async (request: Request, response: Response, next: NextFunction) => {
+router.post("/products",verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         console.log('post: ',request.body)
         // Take image from request into the body:
@@ -65,14 +66,11 @@ router.post("/products", async (request: Request, response: Response, next: Next
 
 
 // PATCH http://localhost:3001/api/products/5e91e29b9c08fc560ce2cf3a
-router.patch("/products/:_id", async (request: Request, response: Response, next: NextFunction) => {
+router.patch("/products/:_id",verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
-        // console.log(request.body)
-        // console.log('PATCH controller')
+
         request.body.image = request.files?.image;
         request.body._id = request.params._id;
-        // console.log('request.body.image: ',request.body.image)
-        // console.log('request.body._id : ',request.body._id )
 
         const product = new ProductModel(request.body);
         const updatedProduct = await logic.updatePartialProduct(product);
@@ -101,17 +99,5 @@ router.get("/products/images/:imageName",  async (request: Request, response: Re
     }
 });
 
-// // Mongo Query Language
-
-// // GET http://localhost:3001/api/query-products
-// router.get("/query-products", async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//         const products = await logic.testMongoQueryLanguage();
-//         response.json(products);
-//     }
-//     catch (err: any) {
-//         next(err);
-//     }
-// });
 
 export default router;

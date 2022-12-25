@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken"
 import { Request } from "express";
 import { UnauthorizedError } from "../4-models/error-models";
 import Crypto from 'crypto';
+import jwtDecode from "jwt-decode";
 
 // Encrypt the password using hash technique
 function hash(plainText: string): string {
@@ -66,8 +67,28 @@ function verifyToken(request: Request): Promise<boolean> {
     });
 };
 
+function getUserDetailsFromToken(request: Request): Promise<any>{
+
+    return new Promise<any>((resolve, reject) => {
+        const header = request.headers.authorization;
+        const token = header.substring(7);
+        const currentUser = (jwtDecode(token) as any).user
+
+        if (currentUser === undefined) {
+            reject( ("You do not have permission"))
+            return;
+        }
+ 
+        resolve(currentUser)
+
+    })
+
+    
+}
+
 export default {
     getNewToken,
     verifyToken,
-    hash
+    hash,
+    getUserDetailsFromToken
 }

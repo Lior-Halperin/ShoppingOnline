@@ -6,7 +6,7 @@ import verifyLoggedIn from "../3-middleware/verify-logged-in";
 const router = express.Router();
 
 // GET http://localhost:3001/api/category-list
-router.get("/category-list", async (request: Request, response: Response, next: NextFunction) => {
+router.get("/category-list",verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try{
         const categoryList = await logic.getCategoryList();
         response.json(categoryList);
