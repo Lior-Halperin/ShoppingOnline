@@ -8,7 +8,7 @@ import { RouteNotFoundError } from "./4-models/error-models";
 import productController from "./6-controllers/product-controller";
 import authController from "./6-controllers/auth-controller";
 import cityListController from "./6-controllers/cityList-controller";
-import shoppingCartController from "./6-controllers/order-controller"
+import OrderController from "./6-controllers/order-controller"
 import expressFileUpload from "express-fileupload";
 import CategoryController from "./6-controllers/category-controller"
 
@@ -25,7 +25,7 @@ expressServer.use(expressFileUpload())
 expressServer.use("/api", productController);
 expressServer.use("/api", authController);
 expressServer.use("/api", cityListController);
-expressServer.use("/api", shoppingCartController);
+expressServer.use("/api", OrderController);
 expressServer.use("/api", CategoryController);
 
 

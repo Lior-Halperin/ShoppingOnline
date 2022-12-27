@@ -38,7 +38,6 @@ export class ProductsService {
                 products.forEach(element => element.imageName = `${this.serverUrl}products/images/${element.imageName}`) // Changing the image name to a url
             }
             this.productsSubject.next(products)
-            // console.log('productsSubject: ',this.productsSubject.value)
 
             return products; // Returns the products to those who want, but the essence of the function is in the distribution of the information.
         }
@@ -58,8 +57,6 @@ export class ProductsService {
                 formData.append(key,value)
             }
             
-            // console.log('product to edit: ',productToEdit)
-            // console.log(`${this.serverUrl}products/${productToEdit._id}`)
            const resultEdit = await firstValueFrom(this.httpClient.patch<ProductModel[]>(`${this.serverUrl}products/${productToEdit._id}`,formData));
 
             this.notificationService.showNotification('Successfully updated', 'success')
@@ -94,19 +91,9 @@ export class ProductsService {
 
     }
 
-    // public async loadProducts(): Promise<ProductModel[]> {
-    //     const products = await firstValueFrom(this.httpClient.get<ProductModel[]>(`${this.serverUrl}products`));
-    //     console.group("load Products")
-    //     console.log("auth service: ","loadProducts")
-    //     console.log(products)
-    //     console.groupEnd()
-    //     this.productsSubject.next(products);
-    //     return products; // Returns the products to those who want, but the essence of the function is in the distribution of the information.
-    // };
 
     public async deleteProduct(id: string): Promise<any> {
         await firstValueFrom(this.httpClient.delete<any>(`${this.serverUrl}products/${id}`));
-        // await this.loadProducts(); //// You can also not wait because the component will be updated anyway
     }
 
 
@@ -114,31 +101,3 @@ export class ProductsService {
     constructor(private httpClient: HttpClient, private notificationService: NotificationService) { }
 }
 
-
-// ---------------------------------------------------------------
-// export class ProductsService {
-
-//     private productsSubject = new BehaviorSubject<ProductModel[]>([]); // BehaviorSubject Updates those who have subscribe for the event what the current value is now and will continue to update when it changes
-
-//     get products$(): Observable<ProductModel[]> { // Used to listen only, not to throw event.
-//         return this.productsSubject.asObservable();
-//     };
-
-//     private serverUrl = environment.serverUrl;
-
-//     public async loadProducts(): Promise<ProductModel[]> {
-//         const products = await firstValueFrom(this.httpClient.get<ProductModel[]>(`${this.serverUrl}products`));
-//         this.productsSubject.next(products);
-//         return products; // Returns the products to those who want, but the essence of the function is in the distribution of the information.
-//     };
-
-//     public async deleteProduct(id: number): Promise<any> {
-//         await firstValueFrom(this.httpClient.delete<any>(`${this.serverUrl}products/${id}`));
-//         await this.loadProducts(); // You can also not wait because the component will be updated anyway
-//     }
-
-
-
-//     constructor(private httpClient: HttpClient) { } 
-// }
-//----------------------------------------------------------------------

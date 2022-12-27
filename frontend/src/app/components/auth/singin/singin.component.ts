@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/auth.service';
 import { CityListService } from 'src/app/core/city-list.service';
 import { CityListModel } from 'src/app/models/city-list.model'
-import { UserModel } from 'src/app/models/user.model';
 
 @Component({
     selector: 'app-singin',
@@ -23,21 +22,6 @@ export class SinginComponent implements OnInit {
     public hide = true;
 
     //   isLinear = false;
-
-
-    public sendStep(stepType: string) {
-
-        switch (stepType) {
-            case 'firstStepFormGroup':
-                this.authService.singIn(this.firstStepFormGroup.value, 'firstStepFormGroup')
-                break;
-
-            case 'secondStepFormGroup':
-                const combineObject = Object.assign(this.firstStepFormGroup.value, this.secondStepFormGroup.value)
-                this.authService.singIn(combineObject, 'secondStepFormGroup')
-                break;
-        }
-    }
 
     constructor(private formBuilder: FormBuilder, private cityListService: CityListService,
         private authService: AuthService) { }
@@ -94,5 +78,17 @@ export class SinginComponent implements OnInit {
         return errorMessage
     }
 
+    public sendStep(stepType: string) {
 
+        switch (stepType) {
+            case 'firstStepFormGroup':
+                this.authService.singIn(this.firstStepFormGroup.value, 'firstStepFormGroup')
+                break;
+
+            case 'secondStepFormGroup':
+                const combineObject = Object.assign(this.firstStepFormGroup.value, this.secondStepFormGroup.value)
+                this.authService.singIn(combineObject, 'secondStepFormGroup')
+                break;
+        }
+    }
 }

@@ -9,7 +9,7 @@
             <mat-form-field appearance="fill">
                 <mat-label>Id number</mat-label>
                 <input matInput placeholder="Id number/ Social security number" formControlName="userIdNumber"
-                    maxlength="20" minlength="2" required #inputId>
+                    maxlength="20" minlength="2" required autocomplete="off" #inputId>
                 <mat-hint align="end">{{inputId.value.length}}/20</mat-hint>
                 <mat-error
                     *ngIf="firstStepFormGroup.controls['userIdNumber'].invalid">{{getErrorMessage('userIdNumber','firstStepFormGroup')}}
@@ -19,7 +19,7 @@
             <mat-form-field appearance="fill">
                 <mat-label>Email</mat-label>
                 <input matInput placeholder="landOfZion@gmail.com" formControlName="email" maxlength="50" minlength="5"
-                    required #inputEmail>
+                    required autocomplete="off" #inputEmail>
                 <mat-hint align="end">{{inputEmail.value.length}}/50</mat-hint>
                 <mat-error
                     *ngIf="firstStepFormGroup.controls['email'].invalid">{{getErrorMessage('email','firstStepFormGroup')}}</mat-error>
@@ -29,7 +29,7 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Password</mat-label>
                     <input placeholder="&Po9r" formControlName="password" matInput [type]="hide ? 'password' : 'text'"
-                        required maxlength="16" minlength="5" #inputPassword />
+                        required maxlength="16" minlength="5" autocomplete="off" #inputPassword />
                     <mat-hint align="end">{{inputPassword.value.length}}/16</mat-hint>
 
                     <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
@@ -41,7 +41,6 @@
                 </mat-form-field>
 
             </div>
-            <!-- <button mat-button matStepperNext color="accent" []="firstStepFormGroup.invalid" </button> -->
             <button mat-button matStepperNext color="accent" [disabled]="firstStepFormGroup.invalid">Next</button>
         </form>
     </mat-step>
@@ -53,7 +52,7 @@
             <mat-form-field appearance="fill">
                 <mat-label>First name</mat-label>
                 <input matInput placeholder="Enter your first name" formControlName="firstName" maxlength="20"
-                    minlength="2" required #inputFirstName>
+                    minlength="2" required autocomplete="off" #inputFirstName>
                 <mat-hint align="end">{{inputFirstName.value.length}}/20</mat-hint>
                 <mat-error
                     *ngIf="secondStepFormGroup.controls['firstName'].invalid">{{getErrorMessage('firstName','secondStepFormGroup')}}</mat-error>
@@ -62,7 +61,7 @@
             <mat-form-field appearance="fill">
                 <mat-label>Last name</mat-label>
                 <input matInput placeholder="Enter your last name" formControlName="lastName" maxlength="20"
-                    minlength="2" required #inputLastName>
+                    minlength="2" required autocomplete="off" #inputLastName>
                 <mat-hint align="end">{{inputLastName.value.length}}/20</mat-hint>
                 <mat-error
                     *ngIf="secondStepFormGroup.controls['lastName'].invalid">{{getErrorMessage('lastName','secondStepFormGroup')}}</mat-error>
@@ -82,7 +81,7 @@
             <mat-form-field appearance="fill">
                 <mat-label>Street</mat-label>
                 <input matInput placeholder="Enter your street" formControlName="street" maxlength="30" minlength="2"
-                    required #inputStreet>
+                    required autocomplete="off" #inputStreet>
                 <mat-hint align="end">{{inputStreet.value.length}}/30</mat-hint>
                 <mat-error
                     *ngIf="secondStepFormGroup.controls['street'].invalid">{{getErrorMessage('street','secondStepFormGroup')}}</mat-error>

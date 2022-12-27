@@ -76,32 +76,32 @@ async function updatePartialProduct(product: IProductModel): Promise<IProductMod
 // Handling image:
 async function handlingImage(product: IProductModel): Promise<IProductModel> {
 
-    if (product.image) {
+        if (product.image) {
 
-// console.log('product.image', product.image)
+            ProductModel.findOne({ _id: `${product._id}` }, `imageName`).exec(async (err, result) => {
+                console.log('result:' ,result)
+                result && await fs.unlink("../backend/src/1-assets/images/" + result.imageName).catch(err=>console.log('that an image sent for deletion was not found'))
+            })
+            const newProduct = product.toObject()
+    
+            // Generate unique name with original extension:
+            const dotIndex = newProduct.image.name.lastIndexOf(".");
+            const extension = newProduct.image.name.substring(dotIndex); // return part of the string 
+            newProduct.imageName = uuid() + extension; // example: 75045ec6-bcb6-4900-b7e5-284cb66110ad.png/jpg...
+    
+            // Save in disk:
+            const data = newProduct.image.data
+            await fs.writeFile(join(__dirname, "..", "1-assets", "images", newProduct.imageName), data)
+    
+            // Don't return back image file:
+            delete newProduct.image;
+    
+            product = new ProductModel(newProduct)
+    
+        }
+    
+        return product
 
-        ProductModel.findOne({ _id: `${product._id}` }, `imageName`).exec(async (err, result) => {
-            result && await fs.unlink("../backend/src/1-assets/images/" + result.imageName)
-        })
-        const newProduct = product.toObject()
-
-        // Generate unique name with original extension:
-        const dotIndex = newProduct.image.name.lastIndexOf(".");
-        const extension = newProduct.image.name.substring(dotIndex); // return part of the string 
-        newProduct.imageName = uuid() + extension; // example: 75045ec6-bcb6-4900-b7e5-284cb66110ad.png/jpg...
-
-        // Save in disk:
-        const data = newProduct.image.data
-        await fs.writeFile(join(__dirname, "..", "1-assets", "images", newProduct.imageName), data)
-
-        // Don't return back image file:
-        delete newProduct.image;
-
-        product = new ProductModel(newProduct)
-
-    }
-
-    return product
 
 }
 

@@ -5,13 +5,15 @@ import { UnauthorizedError } from "../4-models/error-models";
 import Crypto from 'crypto';
 import jwtDecode from "jwt-decode";
 
+const salt = "ABigMiracleHappenedHere"
+
 // Encrypt the password using hash technique
 function hash(plainText: string): string {
     if(!plainText) return null;
 
-    // SHA: Secure Hashing Algorithm
-    const hashText = Crypto.createHash("sha512").update(plainText).digest("hex") // sha512 = Which algorithm to use | plainText = createHash | hex = turn into a string
-    
+    // HMAC: Hash based Message Authentication Code
+    const hashText = Crypto.createHmac("sha512",salt).update(plainText).digest("hex") // sha512 = Which algorithm to use, salt = A string to insert inside the  | plainText = createHash | hex = turn into a string
+
     return hashText
 }
 

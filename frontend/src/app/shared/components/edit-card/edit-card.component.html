@@ -6,11 +6,9 @@
 
 
     <img mat-card-image [src]="imageUrl">
-    <!-- <input type="file" accept="images/*" #imageFile (change)="onselectFile($event)"> -->
 
     <input type="file" accept="images/*" #imageFile>
 
-    <!-- <img mat-card-image src="{{item.product.imageName}}"> -->
 
     <mat-form-field class="example-full-width">
         <mat-label>Product name: </mat-label>
@@ -41,7 +39,6 @@
 
     <div class="edit-button">
         <button mat-raised-button color="accent" [disabled]="editForm.invalid">Save</button>
-        <!-- <button mat-raised-button color="accent" >Save</button> -->
 
     </div>
     

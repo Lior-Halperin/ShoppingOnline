@@ -1,13 +1,9 @@
 .body-sidenav{
     height: 70vh;
-    /* display: flex; */
-    /* flex-direction: column; */
-}
-
-.content * {
-    /* background-color: white ; */
 
 }
+
+
  .cart-icon{
     display: flex;
     background-color: #ba5059;
@@ -26,28 +22,17 @@
 
 mat-sidenav {
     width: max(10rem,15%);
-    /* height: 100%; */
 
 }
 mat-sidenav-container{
         height: 100%;
 
 }
-mat-sidenav-content {
-    /* height: 80vh; */
-    /* background: aqua; */
 
-}
-
-mat-sidenav-content .main {
-    /* margin-left: 30px; */
-
-}
 
 mat-toolbar>mat-icon {
     margin-left: 15px;
-    /* color: #608299; */
-    /* border: 3px solid black; */
+
 }
 
 mat-toolbar {

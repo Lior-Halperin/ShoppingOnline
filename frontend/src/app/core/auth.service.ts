@@ -94,11 +94,15 @@ export class AuthService {
             switch(stepType){
                 case 'firstStepFormGroup':
                     const firstStepResult =  await firstValueFrom(this.httpClient.patch<UserModel[]>(`${this.serverUrl}register-step1`, registerDetails))
-                    // console.log('firstStepResult',firstStepResult)
+                   
                     break;
                     case 'secondStepFormGroup':
-                        const secondStepResult =  await firstValueFrom(this.httpClient.post<UserModel[]>(`${this.serverUrl}register-step2`, registerDetails))
-                        // console.log('secondStepResult',secondStepResult)
+                        const secondStepResult =  await firstValueFrom(this.httpClient.post<string>(`${this.serverUrl}register-step2`, registerDetails))
+
+                        const cart = localStorage.getItem("cart");
+                        cart !== null && localStorage.removeItem("cart");
+                        localStorage.setItem("token", secondStepResult)
+                        this.initialOperation()
                         break;
             }
 
@@ -111,54 +115,3 @@ export class AuthService {
     constructor(private httpClient: HttpClient, private navigateService: NavigateService,
         private notificationService: NotificationService) { }
 }
-
-//---------------------------Draft-"Is Authenticate state"------------------------------------
-
-    // // isAuthenticate state:
-    // private isAuthenticateSubject = new BehaviorSubject<boolean>(false)
-
-    // get isAuthenticate$(): Observable<boolean> {
-    //     return this.isAuthenticateSubject.asObservable();
-    // };
-//---------------------------Draft-"Token state"------------------------------------
-
-    // // Token state:
-    // private tokenSubject = new BehaviorSubject<string>(null);
-
-    // get token$(): Observable<string> {
-    //     return this.tokenSubject.asObservable()
-    // }
-
-//---------------------------Draft-"remember my"------------------------------------
-    // // Initial check if existing token is valid for continue
-    // public async loadLocalStorageToken() {
-    //     const localToken = localStorage.getItem("token")
-
-    //     if(!this.isAuthenticateSubject.value && localToken){
-    //         try{
-    //             const isApproved = await firstValueFrom(this.httpClient.post<string>(`${this.serverUrl}/auth/login`, null))
-    //             console.log("isApproved")
-    //             console.log(isApproved)
-    //             const decodedToken = this.helper.decodeToken(localToken);
-    //             console.log(decodedToken.user)
-    //         }
-    //         catch(err:any){
-    //             alert(err.message)
-    //             console.log(err.status)
-    //         }
-    //     }
-
-
-    //     // console.log(Object.keys(decodedToken.user).length)
-
-
-    //     //    localToken ? this.tokenSubject.next(localToken) : null;
-    //     //    localToken ? this.userDetailsSubject = (jwtDecode(this.token) as any).user : null;
-
-    //     // this.userDetailsSubject.value.length
-    //     // console.log(this.userDetailsSubject.value.length)
-    //     // return localToken
-
-
-
-    // }

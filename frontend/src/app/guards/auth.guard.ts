@@ -25,12 +25,5 @@ export class AuthGuard implements CanActivate {
         }
 
 
-// -----------------------------------------------------------------------------------------
-    //   const result$ = this.authService.isAuthenticate$.pipe(map(isAuth => {
-    //         if(isAuth) return true; // If true then allow access to the requested path.
-    //         return this.router.parseUrl('/login') //If false redirects the user to the login page.
-    //     }));
 
-    //     return result$
-    // }
 }

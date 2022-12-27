@@ -1,11 +1,8 @@
 
-.layout > *{
-/* border: solid 1px black; */
-}
+
 .layout {
 display: flex;
 flex-direction: column;
-/* background-color: blueviolet; */
 height: 100vh;
 }
 

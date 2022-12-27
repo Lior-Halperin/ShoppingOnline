@@ -16,7 +16,7 @@
             <div class="email-input">
                 <mat-form-field class="full-width" appearance="outline">
                     <mat-label>Email</mat-label>
-                    <input formControlName="email" matInput required />
+                    <input formControlName="email" matInput required autocomplete="off"/>
                     <mat-error *ngIf="loginForm.get('email').errors?.['required']">
                         Required email address
                     </mat-error>
@@ -25,7 +25,7 @@
             <div>
                 <mat-form-field class="full-width" appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required />
+                    <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required autocomplete="off"/>
                     <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
                     [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{ hide ? 'visibility_off' : 'visibility'}}</mat-icon>    

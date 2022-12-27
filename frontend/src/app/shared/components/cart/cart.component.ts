@@ -27,7 +27,6 @@ export class CartComponent implements OnInit {
     }
 
     deleteItem(item: CartProductModel): void {
-        // console.log('delete item', item)
         this.cartService.DeleteItemFromCart(item)
     }
 

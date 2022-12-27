@@ -1,19 +1,5 @@
-* {
-    /* border: solid; */
-    /* height: 10%; */
-    /* background-color: white; */
-}
 
-.dropdown-box{
-    /* display: flex; */
-    /* background-color: #ba5059; */
-}
-
-mat-form-field{
-
-}
 
  mat-select{
     height: 1.5em;
-    /* background-color: #ba5059; */
 }

@@ -8,7 +8,6 @@ const routes: Routes = [
     {path:'login', component: LoginComponent},
     {path:'', redirectTo:'login', pathMatch:'full'},
     {path:'admin',canActivate:[AuthGuard], loadChildren: () => import('./features/admin-environment/admin-environment.module').then(o => o.AdminEnvironmentModule)},
-    // {path:'admin', loadChildren: () => import('./features/admin-environment/admin-environment.module').then(o => o.AdminEnvironmentModule)},
     {path:'client',canActivate:[AuthGuard], loadChildren: () => import('./features/client-environment/client-environment.module').then(o => o.ClientEnvironmentModule)},
     {path: "**", component:PageNotFoundComponent}
 ];

@@ -19,12 +19,6 @@ async function registerStep1(user: IUserModel): Promise<boolean> {
         throw new UnauthorizedError("ID already taken")
     }
 
-    // for await(const [key, value] of Object.entries(user.toObject())) {
-    //      UserModel.find({ [key]: value }).count((err, count) => {          
-    //          console.log(key + " " + value + " is: " + count )
-    //     })
-    // }
-
     return true
 }
 
@@ -37,12 +31,8 @@ async function registerStep2(user: IUserModel): Promise<string> {
     if (errors) {
         throw new ValidationError(errors.message)
     };
-    // console.log(await user.collection.listIndexes())
-    // console.log(await user.collection.getIndexes())
 
     await user.save()
-
-    // await user.replaceOne({"userIdNumber":user.userIdNumber,"password":cyber.hash(user.password)})
 
     await user.updateOne({ userIdNumber: user.userIdNumber, $set: { password: cyber.hash(user.password) } }) // Hash password before saving in db:
 

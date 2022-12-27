@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, ContentChild, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {  Component, OnInit, ViewChild} from '@angular/core';
 import { CategoryService } from 'src/app/core/category.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 import { SidenavComponent } from 'src/app/shared/components/material/sidenav/sidenav.component';
 import { ComponentsConfigService } from '../../services/components-config.service';
-import { distinctUntilChanged, map, Observable, tap } from 'rxjs';
+import { distinctUntilChanged, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-client-home',

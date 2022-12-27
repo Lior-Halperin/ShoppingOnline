@@ -1,6 +1,4 @@
 import express, { NextFunction, Request, Response } from "express";
-import { nextTick } from "process";
-import verifyLoggedIn from "../3-middleware/verify-logged-in";
 import { CredentialsModel } from "../4-models/credentials-model";
 import { UserModel } from "../4-models/user-model";
 import logic from "../5-logic/auth-logic";

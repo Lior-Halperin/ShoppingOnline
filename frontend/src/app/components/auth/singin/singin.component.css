@@ -1,6 +1,5 @@
 
 mat-stepper{
-    /* max-width: 600px; */
     width: min(600px,90%);
     margin:auto;
     text-align: center;

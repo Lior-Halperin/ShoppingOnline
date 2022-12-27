@@ -8,7 +8,6 @@ export interface IOrderModel extends mongoose.Document {
     userId: mongoose.Schema.Types.ObjectId; // Foreign Key
     cityId: mongoose.Schema.Types.ObjectId;
     street: string;
-    // creditCard:number;
 }
 
 // 2. Model schema describing mor about model 
@@ -32,12 +31,6 @@ export const OrderSchema = new mongoose.Schema<IOrderModel>({
         minlength: [2, "The street is too short"],
         maxlength: [20, "the street is to long"]
     },
-    // creditCard :{
-    //     type: Number,
-    //     required: [true,'Missing creditCard'],
-    //     minlength: [4, 'The credit card number is too short'],
-    //     maxlength: [16, 'The credit card number is to long']
-    // }
 
 }, {
     versionKey: false, //Don't add __v field

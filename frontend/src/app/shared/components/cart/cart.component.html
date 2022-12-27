@@ -1,4 +1,3 @@
-<!-- <p>cart works!</p> -->
 
 <div class="bodyCart">
 
@@ -21,7 +20,6 @@
         <div class="categoryCard"  *ngFor="let item of cart$ | async">
 
             <div class="categoryTitle">
-                <!-- <h3>{{item.categoryName}}</h3> -->
                 {{item.categoryName}}
             </div>
 
@@ -54,7 +52,6 @@
 
 
     <div class="bodyFooterCart" (click)="checkout()">
-        <!-- <h1>Checkout</h1> -->
 
         <div class="footerTitle">
             <h3>Checkout</h3>

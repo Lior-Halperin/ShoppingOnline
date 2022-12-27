@@ -1,7 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/core/auth.service';
 import { CartService } from 'src/app/core/cart.service';
-import Role from 'src/app/models/role-enum';
 
 @Component({
   selector: 'app-layout',

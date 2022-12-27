@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import { distinctUntilChanged, map, Observable, tap } from 'rxjs';
+import { distinctUntilChanged, map, Observable } from 'rxjs';
 import { CategoryService } from 'src/app/core/category.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 import { SidenavComponent } from 'src/app/shared/components/material/sidenav/sidenav.component';
@@ -8,17 +8,13 @@ import { ComponentsConfigService } from '../../services/components-config.servic
 @Component({
     selector: 'app-admin-home',
     templateUrl: './admin-home.component.html',
-    styleUrls: ['./admin-home.component.css']
+    // styleUrls: ['./admin-home.component.css']
 })
 
 export class AdminHomeComponent implements OnInit, AfterViewInit {
 
-    // @ViewChild("mor") morRef: ElementRef<HTMLInputElement>
 
     @ViewChild('toSidenav') childMainSidenav: SidenavComponent;
-    // @ViewChild('sidenav') dropdownBoxComponent: DropdownBoxComponent;
-
-    // @ViewChild('adminRouter', {read: ViewContainerRef})adminRouter! : ViewContainerRef;
 
     public counter$: Observable<number>;
 
@@ -52,21 +48,6 @@ export class AdminHomeComponent implements OnInit, AfterViewInit {
     ngAfterViewInit(): void {
         this.createComponentBasedOnConfig()
 
-        // this.dropdownBoxComponent.selectControl.setValue('62e2a895d599b19de53ffbcb')
     }
-
-    // send() {
-    //     console.log(this.morRef.nativeElement)
-    //     console.log(this.morRef)
-    // }
-    //     async importRouter() {
-    //     const componentConfig = { lior :() => import('../products-area/products-list/products-list.component').then(card => card.ProductsListComponent)};
-    //     const componentInstance = await componentConfig.lior()
-    //     const componentRef =  this.sidenav.mainSidenavMain.createComponent(componentInstance);
-    //     //   Object.entries(componentConfig.inputs).forEach(([key,value]) => {
-    //     //     componentRef.setInput(key , value)
-    //     //   })
-    //     // componentRef.setInput("name","dfs")
-    // }
 
 }

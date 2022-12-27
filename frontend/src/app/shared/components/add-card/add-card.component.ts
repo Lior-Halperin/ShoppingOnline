@@ -74,7 +74,6 @@ export class AddCardComponent implements OnInit {
         if (selectedFile.target.files) {
             const reader = new FileReader
             reader.readAsDataURL(selectedFile.target.files[0]);
-            // console.log('img2',selectedFile.target.files[0])
             reader.onload = (event: any) => {
                 this.imageUrl = event.target.result
             }

@@ -1,9 +1,7 @@
 <div class="cardArea" *ngIf="data.card">
     <mat-card class="example-card" *ngIf="data.card">
         <mat-card-header>
-            <!-- <div mat-card-avatar class="example-header-image"></div> -->
             <mat-card-title>{{data.card.model.name}}</mat-card-title>
-            <!-- <mat-card-subtitle>{{item.categoryId}}</mat-card-subtitle> -->
         </mat-card-header>
         <img mat-card-image src="{{data.card.model.imageName}}">
 
@@ -19,7 +17,6 @@
                         <mat-label>=Quantity</mat-label>
                         <input type="number" formControlName="quantity"  #quantityInput maxlength="2" minlength="1" matInput required />
                         <mat-hint align="end">{{quantityInput.value}}/30</mat-hint>
-                        <!-- <mat-error *ngIf="cardForm.get('quantity').errors?.['required']"> -->
                             <mat-error *ngIf="cardForm.controls['quantity'].invalid">
                                 Possible quantity for purchase is 1-30                        </mat-error>
                     </mat-form-field>
