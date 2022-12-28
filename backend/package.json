@@ -5,7 +5,7 @@
     "scripts": {
         "start": "nodemon --exec ts-node src/app.ts"
     },
-    "author": "Full Stack Course",
+    "author": "Lior Halperin",
     "license": "ISC",
     "dependencies": {
         "cors": "^2.8.5",

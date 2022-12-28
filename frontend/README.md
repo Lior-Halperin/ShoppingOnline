@@ -1,27 +1,83 @@
-# Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+# Fresh market online
+This is a full-stack SPA online shop application demo.
 
-## Development server
+## Introduction
+This project is an example to E-commerce application with a shopping cart model that can handle customers and sellers in a CRM platform with a database.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## features
 
-## Code scaffolding
+* **Authorization panel** 
+* **Notifications**  
+* **Dynamic shopping cart** 
+* **Client - Adding products to the cart**
+* **Admin  - adding, editing and deleting product cards**
+* **Displaying the last cart that was not sent to the order**
+* **Displaying the product cards by category**  
+* **Sending an order of the cart**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Methods
 
-## Build
+| Method             | explanation                                   |                             
+| ------------------- | ----------------------------------------------- |
+| **Lazy loading** | for two features (admin and client).|
+| **Shared Module** | shared singleton components.|
+| **Core Module** | shared singleton services. |
+| **Route guards** | Preventing unauthorized access.|
+| **Directive** | for auto saving on exit.|
+| **Dynamic components** | load new components at runtime.|
+| **Global state** | management with RxJS.|
+| **LocalStorage** | cart, token storage.|
+| **Responsive display** | display adjustment for each device.|
+| **Mongoose** | schemas, validation, Models, populate, virtual, queries, aggregation |
+| **Hashing password** | salt Password, register and login. |
+| **Authentication** | User identity verification. |
+| **Authorization** | approval of actions according to the role. |
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Tech Stack
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**Client:** Angular, TypeScript, Material UI, CSS, RxJS, JWT.
 
-## Running end-to-end tests
+**Server:** Node.js, Express, Mongoose, cors, JWT, uuid.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+## Lessons Learned
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* Draw a diagram of the entire project before starting to program.
+* Program the client and server side at the same time.
+* Divide the project into parts and define a working time for each part.
+* Management of a secondary git branch to the main.
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Lior-Halperin/ShoppingOnline.git
+```
+**The following commands must be run for both layers, frontend and backend.
+Go to the project directory
+
+```bash
+  cd ShoppingOnline\enter the layer name
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm start
+```
+
+## Authors
+
+- [@Lior-Halperin](https://www.github.com/Lior-Halperin)
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lior-halperin-25a90b219/)
+
+
