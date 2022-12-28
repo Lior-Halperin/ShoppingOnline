@@ -10,44 +10,45 @@ This project is an example to E-commerce application with a shopping cart model 
 * **Authorization panel** 
 * **Notifications**  
 * **Dynamic shopping cart** 
-* **Client - Adding products to the cart**
-* **Admin  - adding, editing and deleting product cards**
-* **Displaying the last cart that was not sent to the order**
-* **Displaying the product cards by category**  
-* **Sending an order of the cart**
+* **Client - add products to the cart**
+* **Admin  - add, edit and delete product cards**
+* **Display the last open cart**
+* **Display the product cards by category**  
+* **Execute the cart as an order**
 
 ## Methods
 
-| Method             | explanation                                   |                             
+| Method             | Explanation                                   |                             
 | ------------------- | ----------------------------------------------- |
-| **Lazy loading** | for two features (admin and client).|
-| **Shared Module** | shared singleton components.|
-| **Core Module** | shared singleton services. |
-| **Route guards** | Preventing unauthorized access.|
-| **Directive** | for auto saving on exit.|
-| **Dynamic components** | load new components at runtime.|
-| **Global state** | management with RxJS.|
-| **LocalStorage** | cart, token storage.|
-| **Responsive display** | display adjustment for each device.|
-| **Mongoose** | schemas, validation, Models, populate, virtual, queries, aggregation |
-| **Hashing password** | salt Password, register and login. |
+| **Lazy Loading** | For two features (admin and client).|
+| **Shared Module** | Shared singleton components.|
+| **Core Module** | Shared singleton services. |
+| **Route Guards** | Preventing unauthorized access.|
+| **Directive** |  Auto saving on exit.|
+| **Dynamic Components** | Load new components at runtime.|
+| **Global State** | Management with RxJS.|
+| **LocalStorage** | Cart and token storage.|
+| **Responsive Display** | Display adjustments for each device.|
+| **Mongoose** | Schemas, validation, models, populate, virtual, queries, aggregation |
+| **Hashing Password** | Salt password, register and login. |
 | **Authentication** | User identity verification. |
-| **Authorization** | approval of actions according to the role. |
+| **Authorization** | Approval of actions according to the role. |
 
 
 ## Tech Stack
 
 **Client:** Angular, TypeScript, Material UI, CSS, RxJS, JWT.
 
-**Server:** Node.js, Express, Mongoose, cors, JWT, uuid.
+**Server:** Node.js, Express, Mongoose, CORS, JWT, UUID.
 
 
-## Lessons Learned
+## Lessons 
 
-* Draw a diagram of the entire project before starting to program.
-* Program the client and server side at the same time.
-* Divide the project into parts and define a working time for each part.
+* Draw a diagram of the entire project before development.
+* Develop client and server side simultaneously.
+* Dividing the project into dated sprints.
 * Management of a secondary git branch to the main.
+
 ## Run Locally
 
 Clone the project
@@ -55,7 +56,8 @@ Clone the project
 ```bash
   git clone https://github.com/Lior-Halperin/ShoppingOnline.git
 ```
-**The following commands must be run for both layers, frontend and backend.
+**The following commands must be applied for both layers, frontend and backend.**
+
 Go to the project directory
 
 ```bash
