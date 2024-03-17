@@ -58,7 +58,7 @@ export class AuthService {
     public async login(credentials: CredentialsModel) {
         try {
             // Get token form the backend
-            const token = await firstValueFrom(this.httpClient.post<string>(`${this.serverUrl}/auth/login`, credentials))
+            const token = await firstValueFrom(this.httpClient.post<string>(`${this.serverUrl}auth/login`, credentials))
             // Save token in storage!
             localStorage.setItem("token", token)
 
